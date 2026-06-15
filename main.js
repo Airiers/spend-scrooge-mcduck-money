@@ -157,6 +157,11 @@ const items = [
     img: "https://neal.fun/spend/images/m1-abrams.jpg",
   },
   {
+    name: "Politicien corrompu",
+    price: 10000000,
+    img: "https://static01.nyt.com/images/2019/09/26/arts/26politician-1/26politician-1-superJumbo-v2.jpg",
+  },
+  {
     name: "Formule 1",
     price: 15000000,
     img: "https://neal.fun/spend/images/formula-1-car.jpg",
@@ -201,6 +206,18 @@ const items = [
     name: "Bateau de croisière",
     price: 930000000,
     img: "https://neal.fun/spend/images/cruise-ship.jpg",
+  },
+  {
+    name: "TF1",
+    price: 5000000000,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBpb2zsMytmSxKYco32fuXdT4zwo2KMhYA0A&s",
+    max: 1,
+  },
+  {
+    name: "France Télévisions",
+    price: 15000000000,
+    img: "https://images.openai.com/static-rsc-4/EryeRThnfJpGIndASs--VumCIY0jzJxboGu5EFL-braO3rAMWq1iX7GWNA7PtXNzd2GYX5fzDxawag9fT-k1-S4AfbDXDRD4zP9dMlUgno1HEyUvTdgzJ_vuSuM45f7Hb4d9FtJ1yxxaeeGcgosa7OiG-6AblEQO20b7tHv6fkBsgHOFnXiktl_rY9C2G-CT?purpose=fullsize",
+    max: 1,
   },
   {
     name: "Autoroute",
