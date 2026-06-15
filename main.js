@@ -1,4 +1,4 @@
-let bitcoinPrice = 63000000;
+let bitcoinPrice = 63000;
 
 const items = [
   {
@@ -117,6 +117,11 @@ const items = [
     img: "https://neal.fun/spend/images/rolex.jpg",
   },
   {
+    name: "Bitcoin",
+    price: bitcoinPrice,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtdpHT0ufTT6RANu1VHz5xt6iZqCHOHsdtv5kIjGJIw&s=10",
+  },
+  {
     name: "Tesla",
     price: 75000,
     img: "https://neal.fun/spend/images/tesla.jpg",
@@ -170,11 +175,6 @@ const items = [
     name: "Place dans l'ISS",
     price: 60000000,
     img: "https://images.openai.com/static-rsc-4/VCVRlxNtMk1cmNq5IdkV-KydQb3dhsn4GmzZ2rZi9B8OK6f8iRxY-yMj9gXjR7E17sPwcuWGaLwo_8svCqNZsVQQHv_lCo7OctpclleGg_88Bb8b-VTkLXgpZYXDoYClCHG6MvRtFsnpekrNO1VgnzOb66jP_-Q93-gu2gEUyRlRv09jhPkE1Y7M6B4iifAK?purpose=fullsize",
-  },
-  {
-    name: "Bitcoin",
-    price: bitcoinPrice,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtdpHT0ufTT6RANu1VHz5xt6iZqCHOHsdtv5kIjGJIw&s=10",
   },
   {
     name: "Faire un film",
@@ -262,6 +262,12 @@ const items = [
     max: 1,
   },
   {
+    name: "Disney",
+    price: 220000000000,
+    img: "https://images.openai.com/static-rsc-4/D3g0fDF8EL1iv1z0PNQwcQgZMBnWdPpcwrO0vuFx3qplG4fNbHQBBNxgGgEgOWxHtblldUfvvWjP9MTjgjDeR9L3zErAAMp13guo7XEW61J60aLV-A45W409mYEjyA0e_Xb0dHSkEq8p6_vEorrn4ZmhP2j3_t4Jdi9cMLtUOIW-rHfgR9_rTu4ig4oyhOS4?purpose=fullsize",
+    max: 1,
+  },
+  {
     name: "Armée Britannique",
     price: 250000000000,
     img: "https://t4.ftcdn.net/jpg/03/07/71/53/360_F_307715315_uhX53enrBPdSvRFLOYb31gL8KKPlreWb.jpg",
@@ -279,12 +285,41 @@ const items = [
     img: "https://media.lesechos.com/api/v1/images/view/5c335dac8fe56f165508ef1f/1280x720/0202627987376-web.jpg",
     max: 1,
   },
+  {
+    name: "Luxembourg",
+    price: 500000000000,
+    img: "https://images.openai.com/static-rsc-4/0Nc1yKLhihxLqZsFlrAMRKlfWdchVIp_eemX3mkUJ3sU9Zg60DCpW2rRAyE5ERsHOIAOMhUy5bqG8yp2ibG3Qhp3axd4wOpCUAHGiMerkBILhRgNiIVgabzmpQH9rCzS0CgtDSPYLdSHEmkip0O-CI3ZMkHXizU7Zm1h_Q6tpBEcm3RHYG0l4ZXCmEFEf9du?purpose=fullsize",
+    max: 1,
+  },
 ];
 
 let money = 788423000070;
 const start_money = money;
 const owned = {};
 items.forEach((item) => (owned[item.name] = 0));
+
+fetch(
+  "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
+)
+  .then((res) => res.json())
+  .then((data) => {
+    bitcoinPrice = data.bitcoin.usd;
+
+    const bitcoinItem = items.find((item) => item.name === "Bitcoin");
+
+    if (bitcoinItem) {
+      bitcoinItem.price = bitcoinPrice;
+
+      const priceEl = document
+        .querySelector(`[data-buy="Bitcoin"]`)
+        .closest(".item")
+        .querySelector(".price");
+
+      priceEl.textContent = "$" + bitcoinPrice.toLocaleString("en-US");
+    }
+
+    updateUI();
+  });
 
 const grid = document.querySelector(".grid");
 items.forEach((item) => {
@@ -410,13 +445,5 @@ grid.addEventListener("click", (e) => {
     }
   }
 });
-
-fetch(
-  "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
-)
-  .then((res) => res.json())
-  .then((data) => {
-    bitcoinPrice = data.bitcoin.usd;
-  });
 
 updateUI();
