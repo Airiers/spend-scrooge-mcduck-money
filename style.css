@@ -70,13 +70,12 @@ main {
 .grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
   font-size: 30px;
   color: rgb(37, 37, 37);
   font-weight: 700;
 }
-
 .item {
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -138,4 +137,34 @@ button {
   color: #333;
   padding: 9px 12px;
   width: 100%;
+}
+
+.item-img {
+  height: 4.5em;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 95%;
+  }
+
+  .money,
+  .total {
+    font-size: 22px;
+    padding: 15px;
+  }
+
+  .item {
+    padding: 15px 10px;
+    font-size: 16px;
+  }
+
+  .controls {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .item-img {
+    height: 4em;
+  }
 }

@@ -343,7 +343,7 @@ items.forEach((item) => {
   const div = document.createElement("div");
   div.className = "item";
   div.innerHTML = `
-    <img height="100px" src="${item.img}">
+    <img class="item-img" src="${item.img}">
     <p>${item.name}</p>
     <p class="price">$${item.price.toLocaleString("en-US")}</p>
     <div class="controls">
